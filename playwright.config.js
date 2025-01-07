@@ -12,11 +12,26 @@ export default defineConfig({
   forbidOnly: isCI,
   retries: isCI ? 2 : 1,
   workers: isCI ? 4 : undefined,
-  reporter: [
-    ['html'], // Ensure you have the HTML reporter as well
-    ['dot'], // Console output reporter
-  ],
-  outputDir: 'test-results',
+  reporter: process.env.CI
+    ? [
+      [
+        "./node_modules/playwright-slack-report/dist/src/SlackReporter.js",
+        {
+          slackWebHookUrl: process.env.SLACK_WEBHOOK_URL,
+          sendResults: "always", // "always" , "on-failure", "off"
+          maxNumberOfFailuresToShow: 0,
+          meta: [
+            {
+              key: ":wpsp: SchedulePress Automation - Test Results",
+              value: "<https://nahidthenh.github.io/schedulepress-playwright-automation/ | 📂 See The Result.>",
+            },
+          ],
+        },
+      ],
+      ["html"],
+    ]
+    : [["dot"], ["list"], ["html"]],
+
   use: {
     // baseURL: '',
     trace: 'on-first-retry',
