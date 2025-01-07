@@ -12,7 +12,7 @@ npm init playwright@latest
 Install dotenv:
 
 ```
-npm install dotenv@latest
+npm install dotenv;
 ```
 
 Install playwright-slack-report
