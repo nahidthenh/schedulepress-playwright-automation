@@ -1,8 +1,12 @@
-const { defineConfig, devices } = require('@playwright/test');
-require('dotenv').config();
+import { defineConfig, devices } from '@playwright/test';
+
+import * as dotenv from 'dotenv';
+
+dotenv.config();
+
 const isCI = !!process.env.CI; // Check if the CI environment variable is set
 
-module.exports = defineConfig({
+export default defineConfig({
   testDir: './tests',
   fullyParallel: true,
   forbidOnly: isCI,
