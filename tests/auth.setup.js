@@ -3,8 +3,7 @@ import * as dotenv from 'dotenv';
 import path from 'path';
 
 dotenv.config();
-
-const authFile = path.join(__dirname, '../playwright/.auth/user.json');
+const authFile = path.join(import.meta.url, '../playwright/.auth/user.json');
 
 const username = process.env.username;
 const password = process.env.password;
