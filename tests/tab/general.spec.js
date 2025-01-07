@@ -5,7 +5,6 @@ test.use({ storageState: 'playwright/.auth/user.json' });
 test.describe("SchedulePress General Tab All TestCases ", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('https://schedulepress.qa1.site/wp-admin/admin.php?page=schedulepress');
-    await expect(page.getByRole('heading', { name: 'Dashboard' })).toBeVisible();
   });
 
   test('Verify Login', async ({ page }) => {

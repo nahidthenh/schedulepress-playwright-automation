@@ -3,8 +3,8 @@ const path = require('path');
 
 const authFile = path.join(__dirname, '../playwright/.auth/user.json');
 
-const username = `${process.env.username}`;
-const password = `${process.env.password}`;
+const username = `${process.env.USERNAME}`;
+const password = `${process.env.PASSWORD}`;
 
 setup('authenticate', async ({ page }) => {
     // Perform authentication steps. Replace these actions with your own.
