@@ -1,9 +1,11 @@
 const { test, expect } = require('@playwright/test');
+
 test.use({ storageState: 'playwright/.auth/user.json' });
+
 test.describe("SchedulePress General Tab All TestCases", () => {
   test.beforeEach(async ({ page }) => {
-    const cookies = await page.context().cookies();
     await page.goto('https://schedulepress.qa1.site/wp-admin/admin.php?page=schedulepress');
+    await expect(page.getByRole('heading', { name: 'Dashboard' })).toBeVisible();
   });
 
   test('Verify Login', async ({ page }) => {
@@ -11,4 +13,6 @@ test.describe("SchedulePress General Tab All TestCases", () => {
     await expect(page.getByText('Core Version:')).toBeVisible();
     await expect(page.getByText('Pro Version:')).toBeVisible();
   });
+
+
 });

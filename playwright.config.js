@@ -11,7 +11,7 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: isCI,
   retries: isCI ? 2 : 1,
-  workers: isCI ? 1 : undefined,
+  workers: isCI ? 4 : undefined,
   reporter: [
     ...(isCI
       ? [
