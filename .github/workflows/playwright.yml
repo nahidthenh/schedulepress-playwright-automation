@@ -33,8 +33,11 @@ jobs:
         run: |
           echo "SLACK_WEBHOOK_URL=${{ secrets.SLACK_WEBHOOK_URL }}" >> .env
 
+      - name: Run setup Auth Script
+        run: npx playwright test tests/auth.setup.js
+
       - name: Run Playwright tests for Chromium
-        run: npx playwright test --project=chromium --workers=4
+        run: npx playwright test --project=chromium
         continue-on-error: true # Ensures workflow continues even if tests fail
 
       - name: Upload Playwright report
