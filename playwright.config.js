@@ -13,26 +13,7 @@ export default defineConfig({
   retries: isCI ? 2 : 1,
   workers: isCI ? 4 : undefined,
   reporter: [
-    ...(isCI
-      ? [
-        [
-          './node_modules/playwright-slack-report/dist/src/SlackReporter.js',
-          {
-            slackWebHookUrl: process.env.SLACK_WEBHOOK_URL,
-            sendResults: 'always',
-            maxNumberOfFailuresToShow: 0,
-            meta: [
-              {
-                key: ":wpsp: SchedulePress Automation - Test Results",
-                value:
-                  "<https://nahidthenh.github.io/schedulepress-playwright-automation/ | :desktop_computer: Check The Final Report!>",
-              },
-            ],
-          },
-        ],
-      ]
-      : []),
-    ['html', { outputFolder: 'playwright-report', open: 'never' }], // Ensure you have the HTML reporter as well
+    ['html'], // Ensure you have the HTML reporter as well
     ['dot'], // Console output reporter
   ],
   outputDir: 'test-results',
@@ -50,6 +31,7 @@ export default defineConfig({
       use: {
         ...devices['Desktop Chrome']
       },
+      dependencies: ['setup'],
     }
   ]
 });
