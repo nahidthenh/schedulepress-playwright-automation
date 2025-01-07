@@ -1,8 +1,5 @@
 const { test: setup, expect } = require('@playwright/test');
-const dotenv = require('dotenv');
 const path = require('path');
-
-dotenv.config();
 
 const authFile = path.join(__dirname, '../playwright/.auth/user.json');
 

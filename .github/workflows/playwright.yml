@@ -32,10 +32,7 @@ jobs:
       - name: Set up environment variables
         run: |
           echo "SLACK_WEBHOOK_URL=${{ secrets.SLACK_WEBHOOK_URL }}" >> .env
-
-      - name: Run setup Auth Script
-        run: node tests/auth.setup.js
-        continue-on-error: true # Ensures workflow continues even if tests fail
+          mkdir -p playwright/.auth && echo "{}" >> playwright/.auth/user.json
 
       - name: Run Playwright tests for Chromium
         run: npx playwright test --project=chromium --workers=4
