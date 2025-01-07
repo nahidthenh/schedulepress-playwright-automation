@@ -1,6 +1,6 @@
-import { test as setup, expect } from '@playwright/test';
-import * as dotenv from 'dotenv';
-import path from 'path';
+const { test: setup, expect } = require('@playwright/test');
+const dotenv = require('dotenv');
+const path = require('path');
 
 dotenv.config();
 
