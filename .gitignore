@@ -4,4 +4,5 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 playwright/.auth
-.envplaywright/.auth/user.json
+.env 
+playwright/.auth/user.json
