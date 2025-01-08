@@ -40,8 +40,7 @@ test.describe("SchedulePress General Tab All TestCases ", () => {
     await expect(page.locator('div > .wpsp-event-card > .wpsp-event-card-content > .wpsp-icon').first()).toBeVisible(); //Soft Assertion
   });
 
-
-  test('Calendar Settings All Functionility Test', async ({ page }) => {
+  test('Calendar Settings All Functionality Test', async ({ page }) => {
     // Click and verify sidebar visibility toggle
     await page.locator('div').filter({ hasText: /^Today$/ }).locator('i').nth(2).click();
     await expect(page.locator('#wpsp-sidebar')).toBeHidden();
@@ -73,14 +72,33 @@ test.describe("SchedulePress General Tab All TestCases ", () => {
 
     // Verify draft entry is visible
     await expect(page.locator('div').filter({ hasText: dynamicText }).nth(1)).toBeVisible();
-    await page.locator('div:nth-child(2) > .wpsp-event-card > .wpsp-event-card-content > .wpsp-icon').click();
-    await page.getByRole('button', { name: 'Delete' }).click();
+
+    // Click on the icon to open delete option
+    
+    // await page.locator('div:nth-child(2) > .wpsp-event-card > .wpsp-event-card-content > .wpsp-icon').click();
+    await page.locator('#sidebar-post-wrapper i').click();
+
+    // Click "Delete" button and confirm deletion
+    await page.getByRole('button', { name: 'Delete' }).first().click();
     await expect(page.getByLabel('Are you sure?').locator('span').first()).toBeVisible();
     await expect(page.getByRole('button', { name: '' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Are you sure?' })).toBeVisible();
     await expect(page.getByText('Your post will be moved to')).toBeVisible();
+
+    // Move the post to trash
     await page.getByRole('button', { name: 'Move to Trash' }).click();
 
+    // Add a new post after moving to trash
+    await page.getByLabel('9', { exact: true }).getByRole('button', { name: 'Add New' }).click();
+    await page.getByRole('dialog').getByRole('button', { name: '' }).click();
+
+    // Add another post from calendar 
+    await page.getByLabel('9', { exact: true }).getByRole('button', { name: 'Add New' }).click();
+    await page.getByPlaceholder('Title', { exact: true }).click();
+    await page.getByPlaceholder('Title', { exact: true }).fill('From Calendar');
+    await page.getByPlaceholder('Content').click();
+    await page.getByPlaceholder('Content').fill('From Calendar Content');
+    await page.getByRole('button', { name: 'Save' }).click();
   });
 
 
