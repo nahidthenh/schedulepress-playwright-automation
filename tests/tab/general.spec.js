@@ -5,7 +5,6 @@ test.use({ storageState: 'playwright/.auth/user.json' });
 test.describe("SchedulePress General Tab All TestCases ", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('https://schedulepress.qa1.site/wp-admin/admin.php?page=schedulepress');
-
   });
 
   test('Verify logo & version', async ({ page }) => {
@@ -64,7 +63,7 @@ test.describe("SchedulePress General Tab All TestCases ", () => {
     await expect(page.getByText('Stuck with something? Get')).toBeVisible();
     await expect(page.getByRole('link', { name: 'Get Support ' })).toBeVisible();
   });
-  
+
   test('General Settings RightSideBar Visibility Test For Show your Love', async ({ page }) => {
     await expect(page.locator('div:nth-child(5) > .wpsp-icon')).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Show your Love' })).toBeVisible();
