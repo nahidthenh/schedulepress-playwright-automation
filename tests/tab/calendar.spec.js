@@ -74,8 +74,6 @@ test.describe("SchedulePress General Tab All TestCases ", () => {
     await expect(page.locator('div').filter({ hasText: dynamicText }).nth(1)).toBeVisible();
 
     // Click on the icon to open delete option
-    
-    // await page.locator('div:nth-child(2) > .wpsp-event-card > .wpsp-event-card-content > .wpsp-icon').click();
     await page.locator('#sidebar-post-wrapper i').click();
 
     // Click "Delete" button and confirm deletion
