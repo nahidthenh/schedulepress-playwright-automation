@@ -6,6 +6,7 @@ test.describe("SchedulePress General Tab All TestCases ", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('https://schedulepress.qa1.site/wp-admin/admin.php?page=schedulepress');
     await page.locator('#wpsp-dashboard-body').getByText('Calendar', { exact: true }).click();
+    await page.waitForLoadState('networkidle');
   });
 
   test('Calendar Settings Option Visibility Test', async ({ page }) => {
@@ -74,7 +75,7 @@ test.describe("SchedulePress General Tab All TestCases ", () => {
     await expect(page.locator('div').filter({ hasText: dynamicText }).nth(1)).toBeVisible();
 
     // Click on the icon to open delete option
-    await page.locator('#sidebar-post-wrapper i').click();
+    await page.locator('#sidebar-post-wrapper i').first().click();
 
     // Click "Delete" button and confirm deletion
     await page.getByRole('button', { name: 'Delete' }).first().click();
