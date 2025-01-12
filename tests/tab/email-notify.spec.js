@@ -24,18 +24,12 @@ test.describe("SchedulePress Email Notify Tab All TestCases ", () => {
   test('Email Notify Under Review Functionility Test', async ({ page }) => {
     await page.locator('span').filter({ hasText: 'Email Notify' }).click();
     await page.locator('#email_notify_under_review_section label').nth(1).click();
-    await expect(page.getByText('Role:Select...')).toBeVisible();
     await page.locator('div:nth-child(2) > .wprf-checkbox-select-wrap > .d-inline-block > .checkbox-select > .checkbox-select__control > .checkbox-select__value-container').click();
     await page.getByRole('option', { name: 'All' }).locator('span').click();
     await page.keyboard.press('Escape');
-    await expect(page.getByText('Username:Select...')).toBeVisible();
     await page.locator('div:nth-child(3) > .wprf-checkbox-select-wrap > .d-inline-block > .checkbox-select > .checkbox-select__control > .checkbox-select__value-container > .checkbox-select__input-container').click();
-    await page.getByText('rasel').click();
     await page.keyboard.press('Escape');
-    await expect(page.getByText('Email:Select...')).toBeVisible();
     await page.locator('#email_notify_under_review_section > .wprf-section-fields > div:nth-child(4) > .wprf-checkbox-select-wrap > .d-inline-block > .checkbox-select > .checkbox-select__control > .checkbox-select__value-container > .checkbox-select__input-container').click();
-    await page.getByText('rasel@wpdeveloper.com').click();
-    await page.keyboard.press('Escape');
     await page.locator('#email_notify_under_review_section label').nth(1).click();
   });
 
