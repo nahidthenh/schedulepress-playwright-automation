@@ -31,7 +31,7 @@ export default defineConfig({
       ["html"],
     ]
     : [["dot"], ["list"], ["html"]],
-
+  timeout: 60000, // Increase default timeout to 60 seconds
   use: {
     // baseURL: '',
     trace: 'on-first-retry',

@@ -5,6 +5,7 @@ test.use({ storageState: 'playwright/.auth/user.json' });
 test.describe("SchedulePress General Tab All TestCases ", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('https://schedulepress.qa1.site/wp-admin/admin.php?page=schedulepress');
+    // await page.waitForLoadState('networkidle');
   });
 
   test('Verify logo & version', async ({ page }) => {
