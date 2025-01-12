@@ -39,4 +39,14 @@ test.describe("SchedulePress Email Notify Tab All TestCases ", () => {
     await page.locator('#email_notify_under_review_section label').nth(1).click();
   });
 
+  test('Notify User when a post is Scheduled Save Functionility Check', async ({ page }) => {
+    await page.locator('span').filter({ hasText: 'Email Notify' }).click();
+    await page.locator('#notify_author_post_is_scheduled_section label').nth(1).click();
+    await expect(page.getByText('Role: Editor Select...')).toBeVisible();
+    await expect(page.getByText('Username: rasel Select...')).toBeVisible();
+    await expect(page.getByText('Email: rasel@wpdeveloper.com Select...')).toBeVisible();
+    await page.locator('#notify_author_post_is_scheduled_section label').nth(1).click();
+    await page.getByRole('button', { name: 'Save Changes' }).click();
+    await expect(page.getByLabel('Changes Saved Successfully')).toBeVisible();
+  });
 });
