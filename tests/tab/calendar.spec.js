@@ -4,7 +4,7 @@ test.use({ storageState: 'playwright/.auth/user.json' });
 
 test.describe("SchedulePress Calendar Tab All TestCases ", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('https://schedulepress.qa1.site/wp-admin/admin.php?page=schedulepress');
+    await page.goto('https://schedulepress.wpqa.site/wp-admin/admin.php?page=schedulepress');
     await page.locator('#wpsp-dashboard-body').getByText('Calendar', { exact: true }).click();
     // await page.waitForLoadState('networkidle');
   });
