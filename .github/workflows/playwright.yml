@@ -1,62 +1,62 @@
 name: Playwright Tests
 
-on:
-  push:
-    branches: [main, master]
-  # pull_request:
-  #   branches: [main, master]
-  schedule:
-    - cron: '0 0 * * *'  # 6 AM GMT+6 (0 0 in UTC)
+// on:
+// push:
+// branches: [main, master]
+//   # pull_request:
+//   #   branches: [main, master]
+// schedule:
+// - cron: '0 0 * * *'  # 6 AM GMT + 6(0 0 in UTC)
 
-permissions:
-  contents: write  # Grants write access to the repository
+// permissions:
+// contents: write  # Grants write access to the repository
 
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+// jobs:
+// test:
+// runs - on: ubuntu - latest
+// steps:
+// - name: Checkout repository
+// uses: actions / checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '20'
+// - name: Set up Node.js
+// uses: actions / setup - node@v2
+// with:
+// node - version: '20'
 
-      - name: Install dependencies
-        run: npm ci
+//     - name: Install dependencies
+// run: npm ci
 
-      - name: Install Playwright browsers
-        run: npx playwright install --with-deps
+//     - name: Install Playwright browsers
+// run: npx playwright install--with-deps
 
-      - name: Set up environment variables
-        run: |
-          echo "SLACK_WEBHOOK_URL=${{ secrets.SLACK_WEBHOOK_URL }}" >> .env
-          echo "PERSONAL_ACCESS_TOKEN=${{ secrets.PERSONAL_ACCESS_TOKEN }}" >> .env
-          echo "PASSWORD=${{ secrets.PASSWORD }}" >> .env
-          echo "USERNAME=${{ secrets.USERNAME }}" >> .env
-          mkdir -p playwright/.auth && touch playwright/.auth/user.json
-          echo "{}" >> playwright/.auth/user.json
+// - name: Set up environment variables
+// run: |
+//     echo "SLACK_WEBHOOK_URL=${{ secrets.SLACK_WEBHOOK_URL }}" >> .env
+//           echo "PERSONAL_ACCESS_TOKEN=${{ secrets.PERSONAL_ACCESS_TOKEN }}" >> .env
+//           echo "PASSWORD=${{ secrets.PASSWORD }}" >> .env
+//           echo "USERNAME=${{ secrets.USERNAME }}" >> .env
+// mkdir - p playwright /.auth && touch playwright /.auth / user.json
+//           echo "{}" >> playwright /.auth / user.json
 
-      - name: Run Playwright tests for Chromium
-        run: npx playwright test --project=chromium
-        continue-on-error: true # Ensures workflow continues even if tests fail
+//     - name: Run Playwright tests for Chromium
+//         run: npx playwright test--project = chromium
+// continue-on - error: true # Ensures workflow continues even if tests fail
 
-      - name: Upload Playwright report
-        if: ${{ !cancelled() }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 30
+//     - name: Upload Playwright report
+// if: ${ { !cancelled() } }
+// uses: actions / upload - artifact@v4
+// with:
+// name: playwright - report
+// path: playwright - report /
+//     retention - days: 30
 
-      - name: Deploy HTML report to GitHub Pages (https://nahidthenh.github.io/schedulepress-playwright-automation/)
-        if: always()
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: ./playwright-report
-          keep_files: true
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
+//         - name: Deploy HTML report to GitHub Pages(https://nahidthenh.github.io/schedulepress-playwright-automation/)
+//         if: always()
+// uses: peaceiris / actions - gh - pages@v4
+// with:
+// github_token: ${ { secrets.PERSONAL_ACCESS_TOKEN } }
+// publish_branch: gh - pages
+// publish_dir: ./ playwright - report
+// keep_files: true
+// user_name: 'github-actions[bot]'
+// user_email: 'github-actions[bot]@users.noreply.github.com'
